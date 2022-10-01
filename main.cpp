@@ -32,7 +32,12 @@ int main(){
         }
         cout << "The array before sorting: ";
         Show(A, n);
-        CountingSort(A, B, n);
+        int k = A[0];
+        for (int i = 1; i < n; i++){
+            if (k < A[i])
+                k = A[i];
+        }
+        CountingSort(A, B, k, n);
         cout << "The array after sorting: ";
         Show(B, n);
     }
