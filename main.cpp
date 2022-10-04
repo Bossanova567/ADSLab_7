@@ -15,11 +15,23 @@ int main(){
         cout << "The length of array can't be " << n << endl;
         goto label;
     }
+    if (n == 1){
+        int A;
+        cout << "Enter the data: " << endl;
+        cin >> A;
+        if (cin.fail()){
+            cin.clear();
+            cin.ignore(100, '\n');
+            cout << "Do NOT type letters or words. Try again" << endl;
+            goto label;
+        }
+        cout << "The array before sorting: ";
+        cout << A << endl;
+        cout << "The array after sorting: ";
+        cout << A << endl;
+    }
     else {
         int *A = new int[n];
-        int *B = new int[n];
-        for (int i = 0; i < n; i++)
-            B[i] = 0;
         for (int i = 0; i < n; i++) {
             cout << "Enter the data: " << endl;
             cin >> A[i];
@@ -29,16 +41,15 @@ int main(){
                 cout << "Do NOT type letters or words. Try again" << endl;
                 goto label;
             }
+            if (A[i] < 0 || A[i] > 9){
+                cout << "Enter only numbers 0-9. Try again" << endl;
+                goto label;
+            }
         }
         cout << "The array before sorting: ";
         Show(A, n);
-        int k = A[0];
-        for (int i = 1; i < n; i++){
-            if (k < A[i])
-                k = A[i];
-        }
-        CountingSort(A, B, k, n);
+        CountingSort(A, n, 1);
         cout << "The array after sorting: ";
-        Show(B, n);
+        Show(A, n);
     }
 }
